@@ -513,14 +513,14 @@
             const gradient = ctx.createLinearGradient(0, 0, 0, 1000); gradient.addColorStop(0, "#0f172a"); gradient.addColorStop(1, "#1e293b"); ctx.fillStyle = gradient; ctx.fillRect(0, 0, 800, 1000);
             ctx.beginPath(); ctx.arc(400, -100, 600, 0, 2 * Math.PI); ctx.fillStyle = "rgba(59, 130, 246, 0.1)"; ctx.fill();
             ctx.fillStyle = "#ffffff"; ctx.font = "bold 50px Arial"; ctx.textAlign = "center"; ctx.fillText("PENTAGON 5 VOL.2 2026", 400, 100);
-            ctx.fillStyle = "#94a3b8"; ctx.font = "30px Arial"; ctx.fillText("KARTU IDENTITAS PESERTA", 400, 150);
+            ctx.fillStyle = "#94a3b8"; ctx.font = "30px Arial"; ctx.fillText("KARTU ABSENSI BINDAMPING", 400, 150);
             ctx.shadowColor="rgba(0,0,0,0.5)"; ctx.shadowBlur=10; ctx.fillStyle = "#facc15"; let fontSize = 45; if(x.sekolah.length > 20) fontSize = 35; ctx.font = `bold ${fontSize}px Arial`; ctx.fillText(x.sekolah, 400, 250); ctx.shadowBlur=0;
             let tempDiv = document.createElement('div'); new QRCode(tempDiv, { text: x.kode, width: 400, height: 400, colorDark : "#000000", colorLight : "#ffffff", correctLevel : QRCode.CorrectLevel.H });
             setTimeout(() => {
                 const qrCanvas = tempDiv.querySelector('canvas'); ctx.fillStyle = "white"; ctx.fillRect(175, 300, 450, 450); if(qrCanvas) ctx.drawImage(qrCanvas, 200, 325, 400, 400);
-                ctx.fillStyle = "white"; ctx.font = "30px Arial"; ctx.fillText("KODE REGISTRASI:", 400, 820); ctx.fillStyle = "#3b82f6"; ctx.font = "bold 60px Monospace"; ctx.fillText(x.kode, 400, 890); ctx.fillStyle = "white"; ctx.font = "bold 25px Arial"; ctx.fillText(`NO. UNDIAN: ${x.tampil}`, 400, 950);
-                const imgUrl = canvas.toDataURL("image/png"); const link = document.createElement('a'); link.download = `ID_CARD_${x.sekolah.replace(/\s+/g, '_')}.png`; link.href = imgUrl; document.body.appendChild(link); link.click(); document.body.removeChild(link);
-                let num = cleanNum(x.wa); const msg = `*OFFICIAL PENTAGON 5 VOL.2*\n\nHalo, *${x.sekolah}*!\n\nBerikut kami lampirkan *KARTU IDENTITAS PESERTA (ID CARD)* digital Anda.\n\nKode: ${x.kode}`;
+                ctx.fillStyle = "white"; ctx.font = "30px Arial"; ctx.fillText("NOMOR PESERTA:", 400, 820); ctx.fillStyle = "#3b82f6"; ctx.font = "bold 60px Monospace"; ctx.fillText(x.kode, 400, 890); ctx.fillStyle = "white"; ctx.font = "bold 25px Arial"; ctx.fillText(`NO. TAMPIL: ${x.tampil}`, 400, 950);
+                const imgUrl = canvas.toDataURL("image/png"); const link = document.createElement('a'); link.download = `ABSENSI BINDAMPING${x.sekolah.replace(/\s+/g, '_')}.png`; link.href = imgUrl; document.body.appendChild(link); link.click(); document.body.removeChild(link);
+                let num = cleanNum(x.wa); const msg = `*OFFICIAL PENTAGON 5 VOL.2*\n\nHalo, *${x.sekolah}*!\n\nBerikut kami lampirkan *KARTU ABSENSI BINDAMPING*.\n\nNomor Peserta: ${x.kode}`;
                 setTimeout(() => { window.open(`https://api.whatsapp.com/send?phone=${num}&text=${encodeURIComponent(msg)}`, '_blank'); toast("ID Card Terdownload! Kirim via WA.", "success"); }, 800);
             }, 500);
         }
